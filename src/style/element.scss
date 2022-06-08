@@ -1,0 +1,37 @@
+//所有element组件的公共样式
+@media screen and (max-width: 500px) {
+  .el-message {
+    min-width: 300px !important;
+  }
+  .el-message-box {
+    width: 300px !important;
+  }
+}
+
+.el-button:not(.is-text,.is-link,.el-button--text) {
+  background-color: #6cbfbb !important;
+  border: none !important;
+  color: #ffffff !important;
+}
+
+.el-button--primary {
+  background-color: #6cbfbb;
+  border: none;
+  color: #ffffff;
+}
+
+.el-button:not(.is-text):hover, .el-button:not(.is-text):focus, .el-button:not(.is-text):active, {
+  background-color: #6cbfbb;
+  color: #ffffff;
+}
+
+
+.el-link.el-link--primary {
+  color: #6cbfbb;
+}
+
+//
+//.el-table th.el-table__cell {
+//  background-color: #6cbfbb;
+//  color: #ffffff;
+//}
