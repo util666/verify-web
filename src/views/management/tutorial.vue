@@ -1,6 +1,6 @@
 <template>
   <div>
-    <lt-table ref="tableDataRef" :table-data="tableData" :table-column="tableColumn"></lt-table>
+    <lt-table :minWidth="'1000px'" ref="tableDataRef" :table-data="tableData" :table-column="tableColumn"></lt-table>
   </div>
 </template>
 
@@ -32,11 +32,11 @@ let tableData = ref([
 ])
 let tableColumn = reactive([
   {label: "序号", type: 'index', width: '60px'},
-  {value: "interfaceName", label: "接口名",},
-  {value: "interfacePath", label: "接口路径",},
+  {value: "interfaceName", label: "接口名", width: '150px'},
+  {value: "interfacePath", label: "接口路径", minWidth: '440px'},
   {value: "requestMethod", label: "请求方式", width: '100px'},
-  {value: "explanation", label: "参数说明",},
-  {value: "remark", label: "备注",},
+  {value: "explanation", label: "参数说明", minWidth: '150px'},
+  {value: "remark", label: "备注", width: '100px'},
 ])
 </script>
 

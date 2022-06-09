@@ -56,7 +56,7 @@
               :sort-method="item.sortMethod"
               :fixed="item.fixed"
               :width="item.width"
-              :min-width="item.minWidth||'100'"
+              :min-width="item.minWidth||'100px'"
               :class-name="item.className"
               :align="item.align || 'center'"
           >
@@ -70,7 +70,7 @@
               :key="index"
               :fixed="item.fixed"
               :width="item.width"
-              :min-width="item.minWidth||'100'"
+              :min-width="item.minWidth||'100px'"
               :prop="item.value"
               :label="item.label"
               :align="item.align || 'center'"
