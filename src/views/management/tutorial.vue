@@ -11,7 +11,7 @@ let tableData = ref([
   {
     interfaceName: '用户登录',
     interfacePath: 'http://47.98.229.173/api/loginUser?id=ae801b8ffc0b4f44852546ea51cc230e&account=147258369&device_code=123456&program=1',
-    requestMethod: 'post',
+    requestMethod: 'get',
     explanation: 'id=用户id,\ndevice_code=设备码,\naccount=账号,\nprogram=程序编号',
     remark: '参数顺序可以更改,但不能缺少',
   },

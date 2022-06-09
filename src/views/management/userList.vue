@@ -55,8 +55,6 @@ let tableDataRef = ref()
 let col = small ? 1 : 2
 
 
-
-
 let addUserConfig = reactive([
   {
     label: '有效期/天',
@@ -133,13 +131,13 @@ const reset = () => {
 
 let tableColumn = reactive([
   {label: "选择", type: 'select'},
-  {value: "id", label: "id",},
-  {value: "remarks", label: "备注",},
-  {value: "programName", label: "程序名称",},
-  {value: "creation_time", label: "创建时间",},
-  {value: "device_code", label: "设备码",},
+  {value: "id", label: "id", minWidth: '300px'},
+  {value: "remarks", label: "备注", minWidth: '200px'},
+  {value: "programName", label: "程序名称", minWidth: '150px'},
+  {value: "creation_time", label: "创建时间", minWidth: '200px'},
+  {value: "device_code", label: "设备码", minWidth: '300px'},
   {value: "unbindNum", label: "解绑次数",},
-  {value: "vip_time", label: "到期时间",},
+  {value: "vip_time", label: "到期时间", minWidth: '200px'},
 ])
 let tableData = ref([])
 
@@ -280,7 +278,8 @@ const reviseDialog = () => {
   dialog.body = {
     data: {},
     render: () => {
-      return (<lt-form col={col} labelSuffix="：" configData={reviseUserConfig} formData={reviseUserData.value}></lt-form>)
+      return (
+          <lt-form col={col} labelSuffix="：" configData={reviseUserConfig} formData={reviseUserData.value}></lt-form>)
     }
   }
   dialog.footer = {
