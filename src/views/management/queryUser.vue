@@ -2,6 +2,7 @@
   <div class="wrap">
     <div class="formWrap">
       <lt-form
+          col="1"
           ref="userFormDataRef"
           :configData="formConfig"
           :formData="formData"
@@ -75,6 +76,7 @@ const queryUser = async () => {
   background-size: cover;
   display: flex;
   align-items: center;
+
   .formWrap {
     width: 300px;
     margin: auto;
@@ -86,8 +88,10 @@ const queryUser = async () => {
 
 :deep(.queryUser) {
   margin-top: -2px;
+  text-align: center;
 }
-:deep(.el-form-item__label){
+
+:deep(.el-form-item__label) {
   color: #000;
 }
 

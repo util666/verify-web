@@ -22,10 +22,10 @@ let formConfig = reactive([
     label: 'id',
     key: 'id',
     type: 'input',
-    col: 4,
+    col: 1,
   },
   {
-    label: "", key: "name", noLabel: true, type: "render",
+    label: "", key: "name", noLabel: true, type: "render",col:1,
     render: () => {
       return (
           <div class="w-100 unbindDevice">
@@ -78,6 +78,7 @@ const unbindDevice = async () => {
 
 :deep(.unbindDevice) {
   margin-top: -2px;
+  text-align: center;
 }
 
 :deep(.el-form-item__label) {

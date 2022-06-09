@@ -1,8 +1,7 @@
 <template>
   <div class="tableList">
     <el-table
-        ref="tableRef"
-        @selection-change="selectionChange"
+        :style="{minWidth,width}"
         :data="tableData"
         :max-height="maxHeight"
         :border="border"
@@ -11,18 +10,19 @@
       <template v-for="(item ,index) in tableColumn">
         <template v-if="item.type == 'select'">
           <el-table-column
-              :key="index"
               :align="item.align || 'center'"
-              :fixed="item.type == 'select'&&!item.fixed?'left':item.fixed"
-              :selectable="item.selectable"
-              :width="item.width || 36"
+              :key="index"
               type="selection"
+              :fixed="item.type == 'select'&&!item.fixed?'left':item.fixed"
+              :width="item.width || 36"
+              :selectable="item.selectable"
           ></el-table-column>
         </template>
         <template v-else-if="item.type === 'radio'">
           <el-table-column
               :key="index"
               :width="item.width || 36"
+              :fixed="item.fixed"
               :align="item.align || 'center'"
               :disabled="item.disabled||null"
               :enabled="item.enabled||null"
@@ -39,7 +39,8 @@
               :key="index"
               :label="'序号'"
               type="index"
-              :width="'60px'"
+              :fixed="item.fixed"
+              :width="item.width || '60px'"
               :align="item.align || 'center'"
               :prop="item.value"
           ></el-table-column>
@@ -53,6 +54,7 @@
               :sort-method="item.sortMethod"
               :fixed="item.fixed"
               :width="item.width"
+              :min-width="item.minWidth||'100'"
               :class-name="item.className"
               :align="item.align || 'center'"
           >
@@ -66,7 +68,7 @@
               :key="index"
               :fixed="item.fixed"
               :width="item.width"
-              :min-width="item.minWidth"
+              :min-width="item.minWidth||'100'"
               :prop="item.value"
               :label="item.label"
               :align="item.align || 'center'"
@@ -81,35 +83,29 @@
 
 <script setup>
 import LtRender from "@/components/lt-render/lt-render";
-import {reactive, ref} from "vue";
+import {reactive} from "vue";
 
 defineProps({
   tableColumn: {type: Array, default: () => []},
   tableData: {type: Array, default: () => []},
   maxHeight: [String, Number],
+  minWidth: [String, Number],
+  width: [String, Number],
   height: [String, Number],
   border: {type: [Boolean], default: true},
   size: String,
 })
 
-let selectionList = ref([])
-const selectionChange = (list) => {
-  //当前选择的数据
-  selectionList.value = list
+let radioSelect
+
+const log = (val) => {
+  console.log(val, 777777777)
+  return ''
 }
-
-defineExpose({
-  selectionList,
-})
-
 </script>
 
 <style lang="scss" scoped>
 .tableList {
   overflow: auto;
-
-  .el-table {
-    min-width: 1000px;
-  }
 }
 </style>
