@@ -94,7 +94,7 @@ export default {
           //没有固定每行几个元素,就自适应
           if (!props.col && !item.col) {
             formItem = (
-                <el-col xs={24} sm={12} md={8} lg={6} xl={4} class={"px-16"}>
+                <el-col xs={24} sm={12} md={8} lg={6} xl={6} class={"px-16"}>
                   {formItem}
                 </el-col>
             );

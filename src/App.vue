@@ -18,7 +18,7 @@
             <component :is="Component" v-if="!$route.meta.keepAlive"/>
           </router-view>
         </el-main>
-<!--        <el-footer>Footer</el-footer>-->
+        <!--        <el-footer>Footer</el-footer>-->
       </el-container>
     </el-container>
     <router-view v-else></router-view>
@@ -85,6 +85,13 @@ html, body {
   .el-main {
     position: relative;
     padding-top: 70px;
+    padding-right: 0;
+
+    .wrap {
+      > div {
+        padding-right: 20px;
+      }
+    }
   }
 
   .el-menu {

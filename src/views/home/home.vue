@@ -53,6 +53,7 @@ const getProgram = async () => {
 }
 
 onMounted(() => {
+  store.dispatch('account/getUserInfo')
   getProgram()
 })
 
@@ -75,7 +76,7 @@ const addDialog = () => {
   dialog.body = {
     data: {},
     render: () => {
-      return (<lt-form configData={formConfig} formData={formData.value}></lt-form>)
+      return (<lt-form labelWidth={'100px'} labelSuffix="：" configData={formConfig} formData={formData.value}></lt-form>)
     }
   }
   dialog.footer = {
@@ -130,7 +131,7 @@ const reviseDialog = (data) => {
   dialog.body = {
     data: {},
     render: () => {
-      return (<lt-form configData={formConfig} formData={formData.value}></lt-form>)
+      return (<lt-form labelWidth={'100px'} labelSuffix="：" configData={formConfig} formData={formData.value}></lt-form>)
     }
   }
   dialog.footer = {
@@ -210,7 +211,8 @@ const pagerChange = (page) => {
   justify-content: space-between;
   height: 100%;
   overflow: auto;
-  >div {
+
+  > div {
     overflow: auto;
   }
 }

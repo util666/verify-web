@@ -28,6 +28,7 @@ export default {
         async getUserInfo({state, commit, dispatch}, data = {}) {
             let result = await service('userinfo', {
                 data,
+                noMessage: true,
             })
             if (result.state && result.data) {
                 commit('SET_USERINFO', result.data)

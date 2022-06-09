@@ -1,6 +1,6 @@
 <template>
   <div class="wrap">
-    <div>
+    <div class="body">
       <lt-form
           ref="userFormDataRef"
           :configData="userFormConfig"
@@ -25,7 +25,7 @@
 
 <script setup>
 
-import {onMounted, reactive, ref} from "vue";
+import {onMounted, reactive, ref, inject} from "vue";
 import {service} from "@/service";
 import {useStore} from "vuex";
 import {useRoute} from "vue-router";
@@ -35,6 +35,7 @@ import {copyToClipboard} from "@/utils/storage";
 
 const store = useStore()
 const route = useRoute()
+const small = inject('small')()
 let program = store.state.global.programObj.program || ''
 let programName = store.state.global.programObj.programName || ''
 if (!program) {
@@ -87,6 +88,11 @@ let addUserConfig = reactive([
     }
 
   },
+  {
+    label: '备注',
+    key: 'remarks',
+    type: 'input',
+  }
 ])
 let userFormConfig = reactive([
   {
@@ -123,6 +129,7 @@ const reset = () => {
 let tableColumn = reactive([
   {label: "选择", type: 'select'},
   {value: "id", label: "id",},
+  {value: "remarks", label: "备注",},
   {value: "programName", label: "程序名称",},
   {value: "creation_time", label: "创建时间",},
   {value: "device_code", label: "设备码",},
@@ -178,6 +185,24 @@ const addUser = async () => {
       list.push(item[0])
     })
     await getChild()
+    dialog.title = '本次生成用户列表'
+    dialog.body = {
+      data: {},
+      render: () => {
+        return (<div class="addChildList">
+          {list.map(item => {
+            return <p>{item}</p>
+          })}
+        </div>)
+      }
+    }
+    dialog.footer = {
+      data: {},
+      render: () => {
+        return (<div></div>)
+      }
+    }
+    dialogRef.value?.show()
     copyToClipboard(list)
   }
 }
@@ -250,7 +275,7 @@ const reviseDialog = () => {
   dialog.body = {
     data: {},
     render: () => {
-      return (<lt-form configData={reviseUserConfig} formData={reviseUserData.value}></lt-form>)
+      return (<lt-form labelSuffix="：" configData={reviseUserConfig} formData={reviseUserData.value}></lt-form>)
     }
   }
   dialog.footer = {
@@ -269,11 +294,19 @@ const reviseDialog = () => {
 }
 
 const addDialog = () => {
+  let col = small ? 1 : 2
+  addUserData.value = {}
   dialog.title = '添加用户'
   dialog.body = {
     data: {},
     render: () => {
-      return (<lt-form configData={addUserConfig} formData={addUserData.value}></lt-form>)
+      return (<lt-form
+          col={col}
+          labelSuffix="："
+          labelWidth={'100px'}
+          configData={addUserConfig}
+          formData={addUserData.value}>
+      </lt-form>)
     }
   }
   dialog.footer = {
@@ -314,7 +347,7 @@ const pagerChange = (page) => {
   height: 100%;
   overflow: auto;
 
-  > div {
+  > .body {
     overflow: auto;
   }
 }
@@ -330,4 +363,16 @@ const pagerChange = (page) => {
   }
 }
 
+:deep(.addChildList) {
+  overflow: auto;
+  border: 1px solid #ccc;
+  border-bottom: none;
+
+  p {
+    text-align: center;
+    padding: 8px;
+    white-space: nowrap;
+    border-bottom: 1px solid #cccccc;
+  }
+}
 </style>

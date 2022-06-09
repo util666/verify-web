@@ -35,7 +35,7 @@ instance.interceptors.request.use(request)
 // 添加响应拦截器
 const response = (response) => {
     if (response.data.status == '1') {
-        !response.config.noMessage && ElMessage.error(response.data.message)
+        ElMessage.error(response.data.message)
         return response.data
     }
     //接口请求成功提示
