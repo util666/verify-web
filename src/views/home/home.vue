@@ -76,7 +76,7 @@ const addDialog = () => {
   dialog.body = {
     data: {},
     render: () => {
-      return (<lt-form labelWidth={'100px'} labelSuffix="：" configData={formConfig} formData={formData.value}></lt-form>)
+      return (<lt-form col={2} labelWidth={'100px'} labelSuffix="：" configData={formConfig} formData={formData.value}></lt-form>)
     }
   }
   dialog.footer = {
@@ -131,7 +131,7 @@ const reviseDialog = (data) => {
   dialog.body = {
     data: {},
     render: () => {
-      return (<lt-form labelWidth={'100px'} labelSuffix="：" configData={formConfig} formData={formData.value}></lt-form>)
+      return (<lt-form col={2} labelWidth={'100px'} labelSuffix="：" configData={formConfig} formData={formData.value}></lt-form>)
     }
   }
   dialog.footer = {

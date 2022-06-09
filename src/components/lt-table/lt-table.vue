@@ -1,6 +1,8 @@
 <template>
   <div class="tableList">
     <el-table
+        ref="tableRef"
+        @selection-change="selectionChange"
         :style="{minWidth,width}"
         :data="tableData"
         :max-height="maxHeight"
@@ -83,7 +85,7 @@
 
 <script setup>
 import LtRender from "@/components/lt-render/lt-render";
-import {reactive} from "vue";
+import {reactive, ref} from "vue";
 
 defineProps({
   tableColumn: {type: Array, default: () => []},
@@ -96,12 +98,16 @@ defineProps({
   size: String,
 })
 
-let radioSelect
-
-const log = (val) => {
-  console.log(val, 777777777)
-  return ''
+let selectionList = ref([])
+const selectionChange = (list) => {
+  //当前选择的数据
+  selectionList.value = list
 }
+
+defineExpose({
+  selectionList,
+})
+
 </script>
 
 <style lang="scss" scoped>

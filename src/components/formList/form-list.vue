@@ -59,6 +59,9 @@ export default {
             props.formData[item.key] = []
             item.isSmall = true
           }
+          if (small) {
+            item.col = 1
+          }
 
           if (item.default) {
             //更改默认数据

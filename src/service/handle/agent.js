@@ -14,6 +14,10 @@ const list = [
         name: 'userinfo',
         url: 'account/userinfo',
     },
+    {
+        name: 'updatePwd',
+        url: 'account/updatePwd',
+    },
 ]
 list.map(item => {
     item.requestHandle = item.requestHandle || request.requestHandle

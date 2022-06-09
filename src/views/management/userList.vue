@@ -52,6 +52,11 @@ let userFormDataRef = ref()
 let dialog = reactive({})
 let total = ref('0')
 let tableDataRef = ref()
+let col = small ? 1 : 2
+
+
+
+
 let addUserConfig = reactive([
   {
     label: '有效期/天',
@@ -71,7 +76,7 @@ let addUserConfig = reactive([
     }
   },
   {
-    label: '新增数量/个',
+    label: '新增数量',
     key: 'amount',
     type: 'input',
     on: {
@@ -275,7 +280,7 @@ const reviseDialog = () => {
   dialog.body = {
     data: {},
     render: () => {
-      return (<lt-form labelSuffix="：" configData={reviseUserConfig} formData={reviseUserData.value}></lt-form>)
+      return (<lt-form col={col} labelSuffix="：" configData={reviseUserConfig} formData={reviseUserData.value}></lt-form>)
     }
   }
   dialog.footer = {
@@ -294,7 +299,6 @@ const reviseDialog = () => {
 }
 
 const addDialog = () => {
-  let col = small ? 1 : 2
   addUserData.value = {}
   dialog.title = '添加用户'
   dialog.body = {
