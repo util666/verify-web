@@ -2,6 +2,7 @@
   <div class="wrap">
     <div class="formWrap">
       <lt-form
+          col="1"
           ref="userFormDataRef"
           :configData="formConfig"
           :formData="formData"
