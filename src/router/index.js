@@ -50,8 +50,12 @@ const router = createRouter({
 const exemptLogin = ['queryUser', 'unbindDevice']
 
 router.beforeEach((to, from, next) => {
-    let token = account.state.token || getCookie('token')
-    let userInfo = account.state.userInfo || localStorage.getItem('userInfo')
+    let token, userInfo
+    try {
+        token = account.state.token || getCookie('token')
+        userInfo = account.state.userInfo || localStorage.getItem('userInfo')
+    } catch (e) {
+    }
     //没有登录就跳转到登录页
     if ((!token || !userInfo) && to.name !== "login" && !exemptLogin.includes(to.name)) {
         next("/login");

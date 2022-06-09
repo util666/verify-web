@@ -2,11 +2,18 @@ import {service} from "@/service";
 import {getCookie, setCookie} from "@/utils/storage";
 import router from "@/router";
 
+const getUserInfo = () => {
+    try {
+        return localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null
+    } catch (e) {
+        return null
+    }
+}
 
 export default {
     namespaced: true,
     state: {
-        userInfo: localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null,
+        userInfo: getUserInfo(),
         token: getCookie('token'),
     },
     mutations: {
@@ -24,9 +31,13 @@ export default {
             })
             if (result.state && result.data) {
                 commit('SET_USERINFO', result.data)
-                data = JSON.stringify(result.data);
-                localStorage.setItem("userInfo", data);
-                await router.push('/')
+                try {
+                    data = JSON.stringify(result.data);
+                    localStorage.setItem("userInfo", data || {});
+                    await router.push('/')
+                } catch (e) {
+                    console.log(e)
+                }
             } else {
                 await router.push('/login')
             }
