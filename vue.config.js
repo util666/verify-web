@@ -1,5 +1,5 @@
 const {defineConfig} = require('@vue/cli-service')
-
+const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const path = require("path");
 
 const args = require("minimist")(process.argv.slice(2));
@@ -17,7 +17,7 @@ if (args.serve == 'serve') {
 
 if (args.buildModel == 'test') {
     //打包测试环境
-    process.env.VUE_APP_BASEURL = 'http://47.98.229.173:3000';
+    process.env.VUE_APP_BASEURL = 'http://43.138.65.107:3000';
     console.log('打包测试环境')
 }
 
@@ -65,6 +65,7 @@ module.exports = defineConfig({
                 '@': path.resolve(__dirname, 'src'),
             }
         },
+        plugins:[new CompressionWebpackPlugin()],
     },
     // css: {
     //     extract: {
